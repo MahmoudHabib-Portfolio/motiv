@@ -1,5 +1,7 @@
+import ReduxProvider from "./ReduxStore/ReduxProvider";
 import "./App.css";
 import "./globals.css";
+
 
 export const metadata = {
   title: "BankDash: Streamlined Financial Insights and Analytics",
@@ -15,7 +17,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-bodybg text-dashLight">
-        {children}
+          <ReduxProvider>
+          { children }
+          </ReduxProvider>
       </body>
     </html>
   );

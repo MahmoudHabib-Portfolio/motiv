@@ -2,7 +2,7 @@
 
 const Assets = () => {
   return (
-    <div>index</div>
+    <div>Assets</div>
   )
 }
 
