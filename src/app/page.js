@@ -95,7 +95,8 @@ export default function Home() {
             sx={{
                  transition:"all 0.3s ease-in",
                  overflow:"unset",
-                 background:"#242731"}}
+                 background:"#242731",
+                }}
           className="block"
           style={{width: panelWidth}}
           >
@@ -112,6 +113,11 @@ export default function Home() {
                 key={x.id}
                 className="flex flex-row gap-x-4 p-4 cursor-pointer w-full md:py-4 md:px-2"
                 onClick={() => {setValue(x.id); dispatch(x.chState)}}
+                style={{
+                  background: value === x.id ? "#292E3D" : "transparent",
+                  borderRadius: value === x.id ? "6px" : "0px",
+                  transition: "all 0.3s easeOut"
+                }}
                 >
                   <div>
                     {x.icon}

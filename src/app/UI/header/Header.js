@@ -34,7 +34,6 @@ const SearchField = styled(TextField)({
 const Header = () => {
 
   const isPanelOpen = useSelector((state) => state.val.value);
-  const dashState = useSelector((state) => state.val.dashState);
   const [search, setSearch] = useState("");
 
   const dispatch = useDispatch();
