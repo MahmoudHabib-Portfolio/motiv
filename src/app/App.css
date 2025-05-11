@@ -21,3 +21,20 @@
     font-weight: 500;
     font-display: swap;
   }
+
+  .recharts-wrapper{
+    width: auto !important;
+  }
+
+  g:focus,
+  path:focus {
+  outline: none !important;
+  }
+
+  .css-1eg4j6d-MuiPaper-root-MuiTableContainer-root{
+    box-shadow: none !important;
+  }
+
+  a{
+    text-decoration: none;
+  }

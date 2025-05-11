@@ -11,10 +11,13 @@ export default {
         'dashLight':"#fff",
         'bodybg':'#1F2128',
         'CursrC': '#EF9011',
-        'levelHover': "#A162F7",
+        'levelHover': "#333",
         'rangeC': '#FF6370',
         'breakC': '#A162F7',
-        'tireC': '#F6CC0D'
+        'tireC': '#F6CC0D',
+        'goldenC': '#E1DFA4',
+        'silvrC': '#E3ECF1',
+        'roseC':'#F4E3E5'
       },
       fontFamily: {
         dmsansBlck: ["DMSans-Black"],
