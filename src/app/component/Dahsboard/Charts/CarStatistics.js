@@ -1,4 +1,4 @@
-import { AreaChart, Area, XAxis } from 'recharts';
+import { AreaChart, Area, XAxis, CartesianGrid } from 'recharts';
 
 const CarStatistics = () => {
 
@@ -66,6 +66,16 @@ const CarStatistics = () => {
             bottom: 0,
         }}
         >
+          
+        <defs>
+        <linearGradient id="orangeGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="rgba(255, 118, 76, 0.29)" />
+          <stop offset="100%" stopColor="rgba(255, 126, 7, 0)" />
+        </linearGradient>
+        </defs>
+
+        <CartesianGrid vertical={true} horizontal={false} stroke="#303046" strokeDasharray="0 0" />
+
         <XAxis 
         dataKey="name" 
         axisLine={false}
@@ -73,7 +83,7 @@ const CarStatistics = () => {
         color='#718EBF'
         tick={{ dy: 10 }}
         />
-        <Area type="monotone" dataKey="uv"strokeWidth={"2"} stroke="rgba(255, 118, 76, 1)" fill="rgba(255, 118, 76, 0.29)" />
+        <Area type="monotone" dataKey="uv"strokeWidth={"2"} stroke="rgba(255, 118, 76, 1)" fill="url(#orangeGradient)" />
     </AreaChart>
   )
 }

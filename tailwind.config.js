@@ -17,7 +17,12 @@ export default {
         'tireC': '#F6CC0D',
         'goldenC': '#E1DFA4',
         'silvrC': '#E3ECF1',
-        'roseC':'#F4E3E5'
+        'roseC':'#F4E3E5',
+        'success': '#70CF97',
+        'chipBg': '#2B2E38'
+      },
+      boxShadow: {
+        'blockShadow':'0px 20px 101px rgba(3, 3, 3, 0.25)'
       },
       fontFamily: {
         dmsansBlck: ["DMSans-Black"],
