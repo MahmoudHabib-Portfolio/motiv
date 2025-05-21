@@ -25,18 +25,16 @@ const Assets = () => {
 
   const [checked, setChecked] = useState([0]);
 
-  const handleToggle = (value) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    setChecked(newChecked);
-  };
+  const handleToggle = (id) => () => {
+  const currentIndex = checked.indexOf(id);
+  const newChecked = [...checked];
+  if (currentIndex === -1) {
+    newChecked.push(id);
+  } else {
+    newChecked.splice(currentIndex, 1);
+  }
+  setChecked(newChecked);
+};
 
   const autoWagen = useRef(null);
 
@@ -194,8 +192,8 @@ const Assets = () => {
               </div>
               <div className="w-full">
                 <List sx={{width: '100%'}}>
-                  {asetts?.map((x, value) => {
-                  const labelId = `checkbox-list-label-${value}`;
+                  {asetts?.map((x) => {
+                  const labelId = `checkbox-list-label-${x.id}`;
                   
                   return (
                   <ListItem
@@ -209,8 +207,8 @@ const Assets = () => {
                   >
                   <ListItemButton
                   role={undefined}
-                  onClick={() => {
-                    handleToggle(value);
+                  onClick={(e) => {
+                    handleToggle(x.id)(e);
                     setValue(() => x.id)
                   }}
                   dense
@@ -219,7 +217,7 @@ const Assets = () => {
                     sx={{minWidth:"0px"}}>
                     <Checkbox 
                     edge="start"
-                    checked={checked.includes(value)}
+                    checked={checked.includes(x.id)}
                     sx={{color: "#808191", '&.Mui-checked':{color: '#FF6370'}}}
                     tabIndex={-1}
                     disableRipple

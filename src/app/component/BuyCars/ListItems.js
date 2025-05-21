@@ -16,20 +16,6 @@ const [likedCars, setLikedCars] = useState({});
     }));
     };
 
-  const containerVariants = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.3, // Adjust the delay between each child
-      },
-    },
-  };
-  
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: {duration: 0.5, ease:"easeOut"} },
-  };
-  
   return (
     <div className="flex flex-col gap-y-3 w-full">
       {bookCars?.map((x) => (
