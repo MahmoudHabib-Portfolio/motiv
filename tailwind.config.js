@@ -19,10 +19,15 @@ export default {
         'silvrC': '#E3ECF1',
         'roseC':'#F4E3E5',
         'success': '#70CF97',
-        'chipBg': '#2B2E38'
+        'chipBg': '#2B2E38',
+        'redFill': '#F84F56',
+        'shareHead': '#E0E4E7',
+        'shareRate': '#407EF9',
+        'badge': 'rgba(161, 98, 247, 0.1)'
       },
       boxShadow: {
-        'blockShadow':'0px 20px 101px rgba(3, 3, 3, 0.25)'
+        'blockShadow':'0px 20px 101px rgba(3, 3, 3, 0.25)',
+        'servState': '0 0 10px 8px rgba(255, 99, 112, 0.3);'
       },
       fontFamily: {
         dmsansBlck: ["DMSans-Black"],
