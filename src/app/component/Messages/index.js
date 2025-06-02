@@ -177,6 +177,13 @@ const Message = () => {
     if(pinnChatt.length === 0){
       setShPinn(false);
     }
+
+    if (window.innerWidth === 768) {
+      setPanelwidth("0px");
+    } else {
+      setPanelwidth("420px");
+    }
+
   }, [pinnChatt]);
 
   return (
@@ -389,7 +396,7 @@ const Message = () => {
           <div className="px-3 border-b-2 border-solid border-gray-700 rounded-xl" style={{zIndex:"500"}}>
             <div className="flex flex-row justify-between py-3 w-full">
               <div className="flex flex-row gap-x-6">
-                <div className='hidden'>
+                <div className='hidden md:block'>
                   <IconButton 
                   sx={{padding:"16px 0px"}}
                   onClick={ToggPanel}>
