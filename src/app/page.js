@@ -109,7 +109,7 @@ export default function Home() {
             {/* Panel_List */}
             <div className="flex flex-col gap-y-4 text-left py-4 px-1 w-full">
               {dashList?.map((x) => (
-                <div 
+                <div
                 key={x.id}
                 className="flex flex-row gap-x-4 p-4 cursor-pointer w-full md:py-4 md:px-2"
                 onClick={() => {setValue(x.id); dispatch(x.chState)}}
@@ -137,7 +137,7 @@ export default function Home() {
           {/* main Body */}
           <div className="flex flex-col gap-y-4 w-full">
             {/* header */}
-            <div className="sticky top-0" style={{zIndex:"500"}}>
+            <div className="sticky top-0" style={{zIndex:"1000"}}>
               <Header />
             </div>
             {/* Body */}

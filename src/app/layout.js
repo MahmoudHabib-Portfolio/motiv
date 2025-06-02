@@ -1,6 +1,7 @@
 import ReduxProvider from "./ReduxStore/ReduxProvider";
 import "./App.css";
 import "./globals.css";
+import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 
 export const metadata = {

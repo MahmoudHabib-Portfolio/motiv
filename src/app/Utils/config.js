@@ -81,3 +81,13 @@ export const BookingCars = [
     class:"old"
     },
   ];
+  
+ export const members = [
+    {id:0, name:"Killan James", img:'Killan-James.png'},
+    {id:1, name:"Desian Tam", img:'Desian-Tam.png'},
+    {id:2, name:"Ahmed Medi", img:'AhmedMedi.png'},
+    {id:3, name:"Claudia Maudi", img:'ClaudiaMaudi.png'},
+    {id:4, name:"MilieNose", img:'MilieNose.png'},
+    {id:5, name:"Ikhsan SD", img:'IkhsanSD.png'},
+    {id:6, name:"Aditya", img:'Aditya.png'},
+  ];
