@@ -48,7 +48,7 @@ const Textarea = styled(TextareaAutosize)(
 );
 
 /* search_Field */
-const MemberField = styled(TextField)({
+const SearchField = styled(TextField)({
   '& .MuiInput-underline:after': {
     borderBottomColor: '#2B2E38',
   },
@@ -125,8 +125,8 @@ TabPanel.propTypes = {
 const Message = () => {
 
   const [value, setValue] = useState(0);
-  const [panelWidth, setPanelwidth] = useState("420px");
-  const [search, setSearch] = useState("");
+  const [tabWidth, setTapwidth] = useState("420px");
+  const [pickMember, setPickMember] = useState("");
   const [message, setMessage] = useState("");
   const [pinn, setPinn] = useState(false);
   const [Members, setMembers] = useState(members);
@@ -147,8 +147,8 @@ const Message = () => {
   }
 
   const ToggPanel = () => {
-    const togPanel = panelWidth !== "420px" ? ("420px") : ("0px");
-    setPanelwidth(togPanel);
+    const togPanel = tabWidth !== "420px" ? ("420px") : ("0px");
+    setTapwidth(togPanel);
   }
 
   const addPinn = (id) => {
@@ -178,13 +178,17 @@ const Message = () => {
       setShPinn(false);
     }
 
-    if (window.innerWidth === 768) {
-      setPanelwidth("0px");
-    } else {
-      setPanelwidth("420px");
-    }
-
   }, [pinnChatt]);
+
+  const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setTapwidth("0");
+      } else {
+        setTapwidth("420px");
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
 
   return (
     <Box
@@ -210,7 +214,7 @@ const Message = () => {
                 margin:"0em 2em 0em 0em"
               }}
         className="block"
-        style={{width: panelWidth}}
+        style={{width: tabWidth}}
         >
           {/* body */}
         <div className='flex flex-col gap-y-6 w-full'>
@@ -239,9 +243,9 @@ const Message = () => {
             <FiSearch />
           </div>
           <div style={{width:"100%"}}>
-          <MemberField
+          <SearchField
             fullWidth
-            value={search}
+            value={pickMember}
             sx={{
                 "& .MuiOutlinedInput-root":{
                 "& .MuiOutlinedInput-notchedOutline": {
@@ -270,7 +274,7 @@ const Message = () => {
                 },
                 }}
                 placeholder={"Search...."}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => setPickMember(e.target.value)}
                 type="text"
                 />
           </div>
@@ -331,7 +335,7 @@ const Message = () => {
               </div>
             </div>
             ) : ("")}
-
+  
             <div className='flex flex-col gap-y-3 overflow-y-auto w-full msgBox' style={{height:"100vh"}}>
               <div>
                 <ListItem sx={{padding:"0px"}}>
@@ -394,7 +398,7 @@ const Message = () => {
         <div className="flex flex-col gap-y-3 rounded-md border-2 border-solid border-gray-700 pb-2 w-full">
           {/* header */}
           <div className="px-3 border-b-2 border-solid border-gray-700 rounded-xl" style={{zIndex:"500"}}>
-            <div className="flex flex-row justify-between py-3 w-full">
+            <div className="flex flex-row justify-between py-3 w-full md:flex-col gap-y-3">
               <div className="flex flex-row gap-x-6">
                 <div className='hidden md:block'>
                   <IconButton 
@@ -428,7 +432,7 @@ const Message = () => {
                   </ListItem>
                 </div>
               </div>
-              <div className="flex flex-row gap-x-3 pt-2">
+              <div className="flex flex-row gap-x-3 pt-2 md:pl-12">
                   <div>
                       <IconButton sx={{padding:"0px"}}>
                         <VideoIcon />
@@ -982,7 +986,7 @@ const Message = () => {
               </div>
             </TabPanel>
           </div>
-          <div className="px-8 w-full">
+          <div className="px-8 w-full md:px-3">
             <div className="flex flex-row justify-between bg-chatBg px-4 py-3 rounded-xl w-full">
             <div className="flex flex-row w-full">
            <div className='pt-1'>

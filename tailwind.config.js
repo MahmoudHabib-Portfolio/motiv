@@ -30,6 +30,7 @@ export default {
   			Greenbg: '#70CF97',
   			Orangebg: '#FF764C',
 			chatBg: '#2B2E38',
+			iconC: "#7C7C8D",
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
