@@ -137,7 +137,7 @@ const Assets = () => {
                       <span className="text-dashC font-dmsansReg text-sm">Book for General Service</span>
                     </div>
                     <div>
-                      <Chip label="completed" sx={{fontSize:"12px"}} className="text-white uppercase rounded-md font-dmsansBlck bg-success" />
+                      <Chip label="completed" sx={{fontSize:"12px", backgroundColor:"#70CF97", color:"#fff"}} className="uppercase rounded-md font-dmsansBlck" />
                     </div>
                   </div>}
                 />
@@ -157,7 +157,7 @@ const Assets = () => {
                       </span>
                     </div>
                     <div>
-                      <Chip label="14:07-21/11/2021" sx={{fontSize:"12px"}} className="text-white uppercase rounded-md font-dmsansBlck bg-chipBg" />
+                      <Chip label="14:07-21/11/2021" sx={{fontSize:"12px", color:"#fff", background:"#2B2E38"}} className="uppercase rounded-md font-dmsansBlck" />
                     </div>
                   </div>}
                 />
@@ -177,7 +177,7 @@ const Assets = () => {
                       </span>
                     </div>
                     <div>
-                      <Chip label="14:07-21/11/2021" sx={{fontSize:"12px"}} className="text-white uppercase rounded-md font-dmsansBlck bg-chipBg" />
+                      <Chip label="14:07-21/11/2021" sx={{fontSize:"12px", color:"#fff", backgroundColor:"#2B2E38"}} className="uppercase rounded-md font-dmsansBlck" />
                     </div>
                   </div>}
                 />

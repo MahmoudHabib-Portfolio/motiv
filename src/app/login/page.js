@@ -14,7 +14,6 @@ import { MdClose } from 'react-icons/md';
 import { BiMessageError } from 'react-icons/bi';
 import Snackbar from '@mui/material/Snackbar';
 
-
 /* Email Field */
 const EmailField = styled(TextField)({
   '& .MuiInput-underline:after': {
@@ -62,6 +61,7 @@ const page = () => {
   const [textMessage, setTxtMssg] = useState('');
   const [open, setOpen] = useState(false);
   const [inputError, setInputError] = useState(false);
+
   const router = useRouter();
 
   const ShowPass = () => {
@@ -70,28 +70,28 @@ const page = () => {
   }
 
   /*======== Alert Bar ========*/
-const Alert = forwardRef(function Alert(props, ref) {
-  return <MuiAlert icon={<BiMessageError />} elevation={6} ref={ref} variant="standard" {...props} />;
-});
+  const Alert = forwardRef(function Alert(props, ref) {
+    return <MuiAlert icon={<BiMessageError />} elevation={6} ref={ref} variant="standard" {...props} />;
+  });
 
-const HandleClose = (event, reason) => {
-  if (reason === 'clickaway') {
-    return;
-  }
-  setOpen(false);
-};
+  const HandleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
 
-const action = (
-  <Fragment>
-    <IconButton
-      size="small"
-      aria-label="close"
-      onClick={HandleClose}
-    >
-      <MdClose className="text-red-500 font-bold" /> 
-    </IconButton>
-  </Fragment>
-);
+  const action = (
+    <Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        onClick={HandleClose}
+      >
+        <MdClose className="text-red-500 font-bold" /> 
+      </IconButton>
+    </Fragment>
+  );
 
   const signIn = (e) => {
     e.preventDefault();
