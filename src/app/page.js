@@ -25,6 +25,7 @@ import BagIcon from './assets/icons/BagIcon';
 import SellCars from './component/SellCars';
 import BookingIcon from './assets/icons/BookingIcon';
 import Logo from './assets/icons/Logo';
+import { useRouter } from 'next/navigation';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -55,13 +56,14 @@ TabPanel.propTypes = {
 export default function Home() {
 
   const [value, setValue] = useState(0);
+  const router = useRouter();
 
   const panelWidth = useSelector((state) => state.val.value);
   const dispatch = useDispatch();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
- 
+
   const dashList = [
     {id: 0, label:"dashboard", icon: <GridView iconColor={value === 0 ? "#ffffff" : "#72767C"} />},
     {id: 1, label:"assets", icon: <AssetsIcon iconColor={value === 1 ? "#ffffff" : "#72767C"} />},
@@ -112,7 +114,15 @@ export default function Home() {
                 <div
                 key={x.id}
                 className="flex flex-row gap-x-4 p-4 cursor-pointer w-full md:py-4 md:px-2"
-                onClick={() => {setValue(x.id); dispatch(x.chState)}}
+                onClick={() => {
+                  if(x.label === "log out"){
+                    //Navigate to /Login
+                    router.push("/login");
+                  } else {
+                    setValue(x.id);
+                    dispatch(x.chState);
+                  }
+                }}
                 style={{
                   background: value === x.id ? "#292E3D" : "transparent",
                   borderRadius: value === x.id ? "6px" : "0px",
@@ -168,9 +178,6 @@ export default function Home() {
             </TabPanel>
             <TabPanel value={value} index={8}>
               <Settings />
-            </TabPanel>
-            <TabPanel value={value} index={9}>
-              <LogOut />
             </TabPanel>
             </div>
           </div>

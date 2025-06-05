@@ -31,6 +31,7 @@ export default {
   			Orangebg: '#FF764C',
 			chatBg: '#2B2E38',
 			iconC: "#7C7C8D",
+			faceBg: "#4776D0",
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
