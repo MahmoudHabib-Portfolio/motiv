@@ -7,7 +7,11 @@ import { TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { AiOutlineEye } from "react-icons/ai";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
-import { useState } from "react";
+import MuiAlert from '@mui/material/Alert';
+import { MdClose } from 'react-icons/md';
+import { BiMessageError } from 'react-icons/bi';
+import Snackbar from '@mui/material/Snackbar';
+import { forwardRef, Fragment, useState } from "react";
 
 /* fName Field */
 const FNameField = styled(TextField)({
@@ -92,23 +96,76 @@ const page = () => {
     const [passTogg, setPassTogg] = useState(true);
     const [fName, setFName] = useState("");
     const [lName, setLName] = useState("");
+    const [textMessage, setTxtMssg] = useState('');
+    const [open, setOpen] = useState(false);
+    const [inputError, setInputError] = useState(false);
+
     const router = useRouter();
-  
+
+    /*======== Alert Bar ========*/
+    const Alert = forwardRef(function Alert(props, ref) {
+      return <MuiAlert icon={<BiMessageError />} elevation={6} ref={ref} variant="standard" {...props} />;
+    });
+
+    const HandleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      setOpen(false);
+    };
+
+    const action = (
+      <Fragment>
+        <IconButton
+          size="small"
+          aria-label="close"
+          onClick={HandleClose}
+        >
+          <MdClose className="text-red-500 font-bold" /> 
+        </IconButton>
+      </Fragment>
+    );
+
     const ShowPass = () => {
       const ToggPass = (passTogg !== true) ? (true) : (false);
       setPassTogg(ToggPass);
     }
-  
+
     const signUp = (e) => {
       e.preventDefault();
       
-      if((email, loginPass, passTogg, fName, lName) === ""){
-        alert("make sure you filled form fields");
-      }else{
-        router.push("/");
+      if(!fName){
+        setInputError(true);
+        setOpen(true);
+        setTxtMssg("Missed To Fill First Name Field");
+        return
       }
 
-    }
+      if(!lName){
+        setInputError(true);
+        setOpen(true);
+        setTxtMssg("Missed To Fill Last Name Field");
+        return
+      }
+
+      if(!email){
+      setInputError(true);
+      setOpen(true);
+      setTxtMssg("Missed To Fill Email Field");
+      return
+      }
+
+      if(!loginPass){
+        setInputError(true);
+        setOpen(true);
+        setTxtMssg("Missed To Fill Password Field");
+        return
+      }
+
+      if(email, loginPass, fName, lName){
+        router.push("/");
+      }
+  }
 
   return (
     <div style={{
@@ -183,7 +240,7 @@ const page = () => {
                                 "& .MuiOutlinedInput-notchedOutline": {
                                     borderWidth: "1px",
                                     borderStyle: "solid",
-                                    borderColor: '#7C7C8D',
+                                    borderColor: fName ? '#7C7C8D' : inputError ? '#F84F56' : '#7C7C8D',
                                     borderRadius: "8px"
                                 },
                                 '&.Mui-focused fieldset': {
@@ -222,7 +279,7 @@ const page = () => {
                                 "& .MuiOutlinedInput-notchedOutline": {
                                     borderWidth: "1px",
                                     borderStyle: "solid",
-                                    borderColor: '#7C7C8D',
+                                    borderColor: lName ? '#7C7C8D' : inputError ? '#F84F56' : '#7C7C8D',
                                     borderRadius: "8px"
                                 },
                                 '&.Mui-focused fieldset': {
@@ -261,7 +318,7 @@ const page = () => {
                                 "& .MuiOutlinedInput-notchedOutline": {
                                     borderWidth: "1px",
                                     borderStyle: "solid",
-                                    borderColor: '#7C7C8D',
+                                    borderColor: email ? '#7C7C8D' : inputError ? '#F84F56' : '#7C7C8D',
                                     borderRadius: "8px"
                                 },
                                 '&.Mui-focused fieldset': {
@@ -300,7 +357,7 @@ const page = () => {
                                 "& .MuiOutlinedInput-notchedOutline": {
                                     borderWidth: "1px",
                                     borderStyle: "solid",
-                                    borderColor: '#7C7C8D',
+                                    borderColor: loginPass ? '#7C7C8D' : inputError ? '#F84F56' : '#7C7C8D',
                                     borderRadius: "8px"
                                 },
                                 '&.Mui-focused fieldset': {
@@ -340,31 +397,44 @@ const page = () => {
                     </div>
                     {/* submit */}
                     <div className="w-full">
-                <Button
-                fullWidth
-                sx={{
-                  background:"#A162F7",
-                  padding:"0.5em",
-                  textAlign:"center",
-                  textTransform:"none",
-                  fontSize:"18px",
-                  color:"#fff",
-                  fontWeight:"600",
-                  borderRadius:"12px"
-                }}
-                type="submit"
-                className="sm:text-base"
-                >
-                  Sign Up
-                </Button>
-              </div>
-                  </div>
-              </form>
-              </div>
+                      <Button
+                      fullWidth
+                      sx={{
+                        background:"#A162F7",
+                        padding:"0.5em",
+                        textAlign:"center",
+                        textTransform:"none",
+                        fontSize:"18px",
+                        color:"#fff",
+                        fontWeight:"600",
+                        borderRadius:"12px"
+                      }}
+                      type="submit"
+                      className="sm:text-base"
+                      >
+                        Sign Up
+                      </Button>
+                    </div>
+                        </div>
+                    </form>
+                    </div>
               
-            </div>
-          </div>
-        </div>
+                    </div>
+                  </div>
+                  {/* Error Body */}
+                  <Snackbar
+                      open={open}
+                      autoHideDuration={3000}
+                      onClose={HandleClose}
+                      action={action}
+                      anchorOrigin = {{ vertical:"top", horizontal: "right"}}
+                    >
+                      <Alert onClose={HandleClose} severity="error" sx={{ width: '100%' }}>
+                        <b>{textMessage}</b>
+                      </Alert>
+                    </Snackbar>
+              
+                </div>
   )
 }
 

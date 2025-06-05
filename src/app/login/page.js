@@ -8,7 +8,11 @@ import { styled } from "@mui/material/styles";
 import { AiOutlineEye } from "react-icons/ai";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { Checkbox, FormControlLabel } from "@mui/material";
-import { useState } from "react";
+import { forwardRef, Fragment, useState } from "react";
+import MuiAlert from '@mui/material/Alert';
+import { MdClose } from 'react-icons/md';
+import { BiMessageError } from 'react-icons/bi';
+import Snackbar from '@mui/material/Snackbar';
 
 
 /* Email Field */
@@ -55,6 +59,9 @@ const page = () => {
   const [loginPass, setLoginPass] = useState("");
   const [passTogg, setPassTogg] = useState(true);
   const [check, setCheck] = useState(false);
+  const [textMessage, setTxtMssg] = useState('');
+  const [open, setOpen] = useState(false);
+  const [inputError, setInputError] = useState(false);
   const router = useRouter();
 
   const ShowPass = () => {
@@ -62,14 +69,50 @@ const page = () => {
     setPassTogg(ToggPass);
   }
 
+  /*======== Alert Bar ========*/
+const Alert = forwardRef(function Alert(props, ref) {
+  return <MuiAlert icon={<BiMessageError />} elevation={6} ref={ref} variant="standard" {...props} />;
+});
+
+const HandleClose = (event, reason) => {
+  if (reason === 'clickaway') {
+    return;
+  }
+  setOpen(false);
+};
+
+const action = (
+  <Fragment>
+    <IconButton
+      size="small"
+      aria-label="close"
+      onClick={HandleClose}
+    >
+      <MdClose className="text-red-500 font-bold" /> 
+    </IconButton>
+  </Fragment>
+);
+
   const signIn = (e) => {
     e.preventDefault();
 
-    if((!email, !loginPass)){
-        alert("make sure you filled form fields");
-      }else{
-        router.push("/");
-      }
+    if(!email){
+    setInputError(true);
+    setOpen(true);
+    setTxtMssg("Missed To Fill Email Field");
+    return
+  }
+
+  if(!loginPass){
+    setInputError(true);
+    setOpen(true);
+    setTxtMssg("Missed To Fill Password Field");
+    return
+  }
+
+  if(email, loginPass){
+    router.push("/");
+  }
 
   }
 
@@ -146,7 +189,7 @@ const page = () => {
                             "& .MuiOutlinedInput-notchedOutline": {
                                 borderWidth: "1px",
                                 borderStyle: "solid",
-                                borderColor: '#7C7C8D',
+                                borderColor: email ? '#7C7C8D' : inputError ? '#F84F56' : '#7C7C8D',
                                 borderRadius: "8px"
                             },
                             '&.Mui-focused fieldset': {
@@ -185,7 +228,7 @@ const page = () => {
                             "& .MuiOutlinedInput-notchedOutline": {
                                 borderWidth: "1px",
                                 borderStyle: "solid",
-                                borderColor: '#7C7C8D',
+                                borderColor: loginPass ? '#7C7C8D' : inputError ? '#F84F56' : '#7C7C8D',
                                 borderRadius: "8px"
                             },
                             '&.Mui-focused fieldset': {
@@ -278,6 +321,19 @@ const page = () => {
           </div>
         </div>
       </div>
+
+    {/* Error Body */}
+    <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={HandleClose}
+        action={action}
+        anchorOrigin = {{ vertical:"top", horizontal: "right"}}
+      >
+        <Alert onClose={HandleClose} severity="error" sx={{ width: '100%' }}>
+          <b>{textMessage}</b>
+        </Alert>
+      </Snackbar>
     </div>
   )
 }
